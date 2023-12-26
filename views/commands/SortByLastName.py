@@ -1,6 +1,6 @@
 
 
-class SortByLastName():
+class SortByLastName:
     def __init__(self, console_ui):
         self.descriptions = "Отсортировать по фамилии"
         self.console_ui = console_ui

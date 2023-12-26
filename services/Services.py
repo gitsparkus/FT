@@ -29,15 +29,15 @@ class FamilyTreeSort:
 
     @staticmethod
     def sort_by_first_name(family_tree):
-        return FamilyTreeSort.sort_family_tree(family_tree, key_func=lambda human: human.first_name)
+        return FamilyTreeSort.sort_family_tree(family_tree, key_func=lambda human: human.get_first_name())
 
     @staticmethod
     def sort_by_last_name(family_tree):
-        return FamilyTreeSort.sort_family_tree(family_tree, key_func=lambda human: human.last_name)
+        return FamilyTreeSort.sort_family_tree(family_tree, key_func=lambda human: human.get_last_name())
 
     @staticmethod
     def sort_by_age(family_tree):
-        return FamilyTreeSort.sort_family_tree(family_tree, key_func=lambda human: human.age)
+        return FamilyTreeSort.sort_family_tree(family_tree, key_func=lambda human: human.get_age())
 
 
 class Service():

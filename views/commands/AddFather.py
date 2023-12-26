@@ -1,6 +1,6 @@
 
 
-class AddFather():
+class AddFather:
     def __init__(self, console_ui):
         self.descriptions = "Добавить отца"
         self.console_ui = console_ui

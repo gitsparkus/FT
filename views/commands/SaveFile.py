@@ -1,6 +1,6 @@
 
 
-class SaveFile():
+class SaveFile:
     def __init__(self, console_ui):
         self.descriptions = "Сохранить в файл"
         self.console_ui = console_ui

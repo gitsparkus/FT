@@ -1,10 +1,11 @@
 from collections import namedtuple
 from models import HumanModel
 
+
 PersonInfo = namedtuple('PersonInfo', ['human', 'father', 'mother'])
 
 
-class FamilyTree():
+class FamilyTree:
     def __init__(self):
         self._id = -1
         self._human_list = dict()
@@ -41,12 +42,13 @@ class FamilyTree():
             self._human_list[id_human] = new_person_info
 
     def add_children(self, id_human, id_children):
+        print(self._human_list)
         if self._human_list.get(id_human) and self._human_list.get(id_children):
-            parent_gender = self._human_list[id_human].gender
+            parent_gender = self._human_list[id_human].human.gender
             existing_father = self._human_list[id_children].father
             existing_mother = self._human_list[id_children].mother
 
-            if parent_gender == GenderModel.Gender.Male:
+            if parent_gender == HumanModel.GenderModel.Gender.Male:
                 if existing_father is None and existing_mother is None:
                     self.add_father(id_children, id_human)
             else:

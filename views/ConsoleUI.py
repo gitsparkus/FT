@@ -1,4 +1,3 @@
-
 from models.HumanModel.GenderModel import Gender
 
 from presenters.Presenter import Presenter
@@ -16,6 +15,7 @@ class ConsoleUI(View):
         self.work = True
         self.mainmenu = MainMenu(self)
 
+    @staticmethod
     def print_answer(text: str):
         print(text)
 
@@ -26,85 +26,66 @@ class ConsoleUI(View):
             self.execute()
 
     def add_human(self):
-        print("Введите имя человека:")
-        first_name = input()
-        print("Введите фамилию человека:")
-        last_name = input()
-        print("Введите дату рождения (yyyy.mm.dd)")
-        byear, bmonth, bday = list(map(int, input().split('.')))
-        print(byear, bmonth, bday)
-        print("Введите пол человека: F/M")
-        gender = Gender.Male if input() == 'M'else Gender.Female
-        print("Человек еще жив?: Y/N")
-        if input() == "Y":
+        first_name = input('Введите имя человека: ')
+        last_name = input('Введите фамилию человека: ')
+        byear, bmonth, bday = list(map(int, input('Введите дату рождения (yyyy.mm.dd) ').split('.')))
+
+        gender = Gender.Male if input('Введите пол человека: F/M ') == 'M' else Gender.Female
+
+        if input('Человек еще жив?: Y/N ') == 'Y':
             self.presenter.add_human(
                 Human(first_name, last_name, gender, datetime.date(byear, bmonth, bday), None))
         else:
-            print("Введите дату рождения (yyyy.mm.dd)")
-            dyear, dmonth, dday = list(map(int, input().split('.')))
+            dyear, dmonth, dday = list(map(int, input('Введите дату рождения (yyyy.mm.dd) ').split('.')))
             self.presenter.add_human(
-                Human(first_name, last_name, gender, datetime.date(byear, bmonth, bday), datetime.date(dyear, dmonth, dday)))
+                Human(first_name, last_name, gender, datetime.date(byear, bmonth, bday),
+                      datetime.date(dyear, dmonth, dday)))
         print(self.presenter.services.print_all())
         human = self.presenter.return_family_tree()
-        print("23")
 
     def add_father(self):
-        print("Введите ID ребенка: ")
-        id_human = int(input())
-        print("Введите ID отца: ")
-        id_father = int(input())
+        id_human = int(input('Введите ID ребенка: '))
+        id_father = int(input('Введите ID отца: '))
         self.presenter.add_father(id_human, id_father)
 
     def add_mother(self):
-        print("Введите ID ребенка: ")
-        id_human = int(input())
-        print("Введите ID матери: ")
-        id_mother = int(input())
+        id_human = int(input('Введите ID ребенка: '))
+        id_mother = int(input('Введите ID матери: '))
         self.presenter.add_mother(id_human, id_mother)
 
     def print_all_human(self):
         print(self.presenter.print_all_human())
 
     def execute(self):
-        print("Введите номер команды:")
-        command = int(input())
+        command = int(input('Введите номер команды: '))
         self.mainmenu.execute(command)
 
     def print_all_human(self):
-        prnt = self.presenter.print_all_human()
-        if print:
-            print(prnt)
+        if to_print := self.presenter.print_all_human():
+            print(to_print)
+        else:
+            print('Нет данных')
 
     def save_to_file(self):
-        print("Напишите имя файла для сохранения:")
-        self.presenter.save_to_file(input())
+        self.presenter.save_to_file(input('Напишите имя файла для сохранения: '))
 
     def load_to_file(self):
-        print("Напишите имя файла для загрузки:")
-        self.presenter.load_to_file(input())
+        self.presenter.load_to_file(input('Напишите имя файла для загрузки: '))
 
     def add_children(self):
-        print("Введите ID человека:")
-        id_human = int(input())
-        print("Введите ID ребенка:")
-        id_children = int(input())
+        id_human = int(input('Введите ID человека: '))
+        id_children = int(input('Введите ID ребенка: '))
         self.presenter.add_children(id_human, id_children)
 
     def sort_by_age(self):
         self.presenter.sort_by_age()
-        print("Отсортированное семейное дерево:")
-        self.print_all_human()
 
     def sort_by_first_name(self):
         self.presenter.sort_by_first_name()
-        print("Отсортированное семейное дерево:")
-        self.presenter.print_all_human()
 
     def sort_by_last_name(self):
         self.presenter.sort_by_last_name()
-        print("Отсортированное семейное дерево:")
-        self.presenter.print_all_human()
 
     def exit(self):
-        print("Завершение работы.")
+        print('Завершение работы.')
         self.work = False

@@ -77,6 +77,12 @@ class Human(EntityInterface):
     def get_age(self):
         return self._age
 
+    def get_last_name(self):
+        return self._last_name
+
+    def get_first_name(self):
+        return self._first_name
+
     def __repr__(self) -> str:
         return f"ID: {self._id} Имя: {self._first_name} Фамилия: {self._last_name} Пол: {self._gender} Возраст: {self.get_age()}"
 

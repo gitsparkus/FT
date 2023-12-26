@@ -1,6 +1,6 @@
 
 
-class LoadFile():
+class LoadFile:
     def __init__(self, console_ui):
         self.descriptions = "Загрузить из файла"
         self.console_ui = console_ui

@@ -1,6 +1,6 @@
 
 
-class AddMother():
+class AddMother:
     def __init__(self, console_ui):
         self.descriptions = "Добавить мать"
         self.console_ui = console_ui

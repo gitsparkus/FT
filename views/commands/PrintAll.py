@@ -1,6 +1,6 @@
 
 
-class PrintAll():
+class PrintAll:
     def __init__(self, console_ui):
         self.descriptions = "Напечатать всех"
         self.console_ui = console_ui

@@ -1,6 +1,6 @@
 
 
-class AddChildren():
+class AddChildren:
     def __init__(self, console_ui):
         self.descriptions = "Добавить ребенка"
         self.console_ui = console_ui
